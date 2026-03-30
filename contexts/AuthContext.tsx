@@ -14,6 +14,26 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function getAuthErrorMessage(error: unknown) {
+  const fallback = 'Something went wrong. Please try again.';
+  if (!error || typeof error !== 'object' || !('message' in error)) {
+    return fallback;
+  }
+
+  const message = String(error.message).toLowerCase();
+  if (message.includes('invalid login credentials')) {
+    return 'Invalid email or password.';
+  }
+  if (message.includes('email not confirmed')) {
+    return 'Please verify your email before signing in.';
+  }
+  if (message.includes('network')) {
+    return 'Network error. Check your internet connection and try again.';
+  }
+
+  return String(error.message) || fallback;
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<any | null>(null);
@@ -68,8 +88,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       if (error) throw error;
       return { data, error: null };
-    } catch (error: any) {
-      return { data: null, error: error.message };
+    } catch (error: unknown) {
+      return { data: null, error: getAuthErrorMessage(error) };
     }
   };
 
@@ -81,8 +101,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       if (error) throw error;
       return { data, error: null };
-    } catch (error: any) {
-      return { data: null, error: error.message };
+    } catch (error: unknown) {
+      return { data: null, error: getAuthErrorMessage(error) };
     }
   };
 

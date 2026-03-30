@@ -109,6 +109,16 @@ export const shadows = {
 
 export const theme = {
   colors,
+  semanticColors: {
+    primary: colors.primary[600],
+    background: colors.background,
+    surface: '#ffffff',
+    border: colors.neutral[200],
+    text: colors.text.primary,
+    textSecondary: colors.text.secondary,
+    error: colors.error[500],
+    success: colors.success[500],
+  },
   spacing,
   borderRadius,
   fontSize,

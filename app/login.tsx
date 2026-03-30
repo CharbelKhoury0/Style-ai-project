@@ -30,13 +30,13 @@ export default function LoginScreen() {
     setLoading(true);
     setError('');
 
-    const { error: signInError } = await signIn(email, password);
+    const { error: signInError } = await signIn(email.trim(), password);
 
     if (signInError) {
       setError(signInError);
       setLoading(false);
     } else {
-      router.replace('/(tabs)');
+      router.replace('/');
     }
   };
 
@@ -53,7 +53,7 @@ export default function LoginScreen() {
           <TextInput
             style={styles.input}
             placeholder="Email"
-            placeholderTextColor={theme.colors.textSecondary}
+            placeholderTextColor={theme.semanticColors.textSecondary}
             value={email}
             onChangeText={setEmail}
             editable={!loading}
@@ -64,7 +64,7 @@ export default function LoginScreen() {
           <TextInput
             style={styles.input}
             placeholder="Password"
-            placeholderTextColor={theme.colors.textSecondary}
+            placeholderTextColor={theme.semanticColors.textSecondary}
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -79,7 +79,7 @@ export default function LoginScreen() {
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator color={theme.colors.surface} />
+              <ActivityIndicator color={theme.semanticColors.surface} />
             ) : (
               <Text style={styles.buttonText}>Sign In</Text>
             )}
@@ -87,7 +87,7 @@ export default function LoginScreen() {
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Don't have an account? </Text>
+          <Text style={styles.footerText}>Do not have an account? </Text>
           <TouchableOpacity onPress={() => router.push('/signup')}>
             <Text style={styles.linkText}>Sign Up</Text>
           </TouchableOpacity>
@@ -100,7 +100,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.semanticColors.background,
   },
   content: {
     flex: 1,
@@ -110,13 +110,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: '700',
-    color: theme.colors.primary,
+    color: theme.semanticColors.primary,
     marginBottom: theme.spacing.sm,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: theme.colors.textSecondary,
+    color: theme.semanticColors.textSecondary,
     textAlign: 'center',
     marginBottom: theme.spacing.xl,
   },
@@ -126,16 +126,16 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.semanticColors.border,
     borderRadius: theme.spacing.sm,
     paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.md,
     fontSize: 16,
-    color: theme.colors.text,
-    backgroundColor: theme.colors.surface,
+    color: theme.semanticColors.text,
+    backgroundColor: theme.semanticColors.surface,
   },
   button: {
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.semanticColors.primary,
     paddingVertical: theme.spacing.md,
     borderRadius: theme.spacing.sm,
     alignItems: 'center',
@@ -145,12 +145,12 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   buttonText: {
-    color: theme.colors.surface,
+    color: theme.semanticColors.surface,
     fontSize: 16,
     fontWeight: '600',
   },
   errorText: {
-    color: theme.colors.error,
+    color: theme.semanticColors.error,
     fontSize: 14,
     marginTop: theme.spacing.sm,
   },
@@ -160,11 +160,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footerText: {
-    color: theme.colors.textSecondary,
+    color: theme.semanticColors.textSecondary,
     fontSize: 14,
   },
   linkText: {
-    color: theme.colors.primary,
+    color: theme.semanticColors.primary,
     fontSize: 14,
     fontWeight: '600',
   },

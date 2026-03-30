@@ -1,22 +1,49 @@
 {
   "expo": {
-    "name": "bolt-expo-nativewind",
-    "slug": "bolt-expo-nativewind",
+    "name": "Style AI",
+    "slug": "style-ai",
+    "description": "Style AI helps users manage wardrobes and get personalized style suggestions.",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "styleai",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.styleai.mobile",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Style AI needs camera access so you can capture outfit and wardrobe photos.",
+        "NSPhotoLibraryUsageDescription": "Style AI needs photo library access so you can select wardrobe images.",
+        "NSLocationWhenInUseUsageDescription": "Style AI uses location to provide weather-aware style recommendations."
+      }
+    },
+    "android": {
+      "package": "com.styleai.mobile",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
-      "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "output": "single"
     },
     "plugins": ["expo-router", "expo-font", "expo-web-browser"],
+    "extra": {
+      "supportUrl": "https://styleai.app/support",
+      "privacyPolicyUrl": "https://styleai.app/privacy"
+    },
     "experiments": {
       "typedRoutes": true
     }

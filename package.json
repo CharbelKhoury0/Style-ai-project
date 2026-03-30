@@ -1,5 +1,5 @@
 {
-  "name": "bolt-expo-starter",
+  "name": "style-ai-mobile",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "private": true,
@@ -7,7 +7,14 @@
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
     "build:web": "expo export --platform web",
     "lint": "expo lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "eas:build:ios": "npx eas-cli build --platform ios --profile production",
+    "eas:build:android": "npx eas-cli build --platform android --profile production",
+    "eas:submit:ios": "npx eas-cli submit --platform ios --profile production",
+    "eas:submit:android": "npx eas-cli submit --platform android --profile production",
+    "release:check": "npm run typecheck && npm run lint",
+    "preflight:mobile": "npm run release:check",
+    "release:all": "npm run eas:build:ios && npm run eas:build:android && npm run eas:submit:ios && npm run eas:submit:android"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -50,6 +57,8 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.1.10",
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
   }
 }
